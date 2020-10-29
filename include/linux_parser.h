@@ -18,6 +18,15 @@ const std::string kVersionFilename{"/version"};
 const std::string kOSPath{"/etc/os-release"};
 const std::string kPasswordPath{"/etc/passwd"};
 
+const std::string filterProcesses("processes");
+const std::string filterRunningProcesses("procs_running");
+const std::string filterMemTotalString("MemTotal:");
+const std::string filterMemFreeString("MemFree:");
+const std::string filterCpu("cpu");
+const std::string filterUID("Uid:");
+const std::string filterProcMem("VmSize:"); // The string can be VmSize As well
+
+
 // System
 float MemoryUtilization();
 long UpTime();
@@ -52,6 +61,13 @@ std::string Ram(int pid);
 std::string Uid(int pid);
 std::string User(int pid);
 long int UpTime(int pid);
+
+// Utils
+template<typename T> 
+T findValueByKey(std::string const &keyFilter, std::string const &filename);
+template <typename T>
+T getValueOfFile(std::string const &filename);
+
 };  // namespace LinuxParser
 
 #endif
